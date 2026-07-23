@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Shahrukh · Security Engineer Portfolio</title>
+  <!-- Font Awesome 6 (Free) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <!-- Google Font: Inter & Space Grotesk -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== CSS Variables / Theme ===== */
+    :root {
+      --bg-primary: #0a0f1c;
+      --bg-secondary: #111827;
+      --bg-card: #1a2332;
+      --bg-card-hover: #243045;
+      --border-color: #2d3b52;
+      --text-primary: #e8edf5;
+      --text-secondary: #9aafcc;
+      --text-muted: #6b85a4;
+      --accent-cyan: #5cd6d6;
+      --accent-blue: #4b8cbf;
+      --accent-purple: #9f7aea;
+      --shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ===== Scrollbar ===== */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-secondary);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-blue);
+      border-radius: 20px;
+    }
+
+    /* ===== Navigation ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+      background: rgba(10, 15, 28, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.8rem 0;
+      transition: 0.3s;
+    }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.5px;
+      color: white;
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--accent-cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      list-style: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: 0.2s;
+      border-bottom: 2px solid transparent;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      border-bottom-color: var(--accent-cyan);
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+      background: radial-gradient(circle at 20% 30%, #14253f, #070b14 80%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(91, 206, 206, 0.08) 0%, transparent 70%);
+      right: -150px;
+      bottom: -200px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero .container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-content h1 .highlight {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-content .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      margin: 1rem 0 1.8rem 0;
+      font-weight: 400;
+      border-left: 4px solid var(--accent-cyan);
+      padding-left: 1.2rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(92, 214, 214, 0.12);
+      border: 1px solid rgba(92, 214, 214, 0.25);
+      padding: 0.3rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      color: var(--accent-cyan);
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.8rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.7rem 1.8rem;
+      border-radius: 40px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.25s;
+      font-size: 0.95rem;
+      border: 1px solid transparent;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+
+    .btn-primary {
+      background: var(--accent-cyan);
+      color: #0a0f1c;
+      border-color: var(--accent-cyan);
+    }
+
+    .btn-primary:hover {
+      background: #45bdbd;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px -8px rgba(92, 214, 214, 0.3);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--text-secondary);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .hero-stats div {
+      text-align: left;
+    }
+
+    .hero-stats .num {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .hero-stats .label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .hero-avatar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .avatar-box {
+      width: 320px;
+      height: 320px;
+      background: linear-gradient(145deg, #1e2f48, #0f1a2b);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 3px solid var(--border-color);
+      box-shadow: 0 30px 50px -20px rgba(0,0,0,0.8);
+      position: relative;
+    }
+
+    .avatar-box i {
+      font-size: 9rem;
+      color: var(--text-secondary);
+      opacity: 0.8;
+    }
+
+    .avatar-box .ring {
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      border-top-color: var(--accent-cyan);
+      border-right-color: var(--accent-blue);
+      opacity: 0.4;
+      animation: spin 12s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ===== Sections common ===== */
+    section {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .section-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-title span {
+      color: var(--accent-cyan);
+    }
+
+    .section-sub {
+      color: var(--text-secondary);
+      margin-bottom: 2.8rem;
+      font-size: 1.05rem;
+      max-width: 650px;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== About ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      background: var(--bg-secondary);
+      padding: 2.5rem;
+      border-radius: 32px;
+      border: 1px solid var(--border-color);
+    }
+
+    .about-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .about-text strong {
+      color: white;
+    }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .about-info .info-item {
+      display: flex;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding-bottom: 0.8rem;
+    }
+
+    .about-info .info-item i {
+      color: var(--accent-cyan);
+      width: 24px;
+      font-size: 1.1rem;
+    }
+
+    .about-info .info-item .label {
+      color: var(--text-muted);
+      font-weight: 500;
+      min-width: 90px;
+    }
+
+    /* ===== Skills ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .skill-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 1.8rem 1.5rem;
+      transition: 0.3s;
+    }
+
+    .skill-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-6px);
+      border-color: var(--accent-blue);
+    }
+
+    .skill-card h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .skill-card h4 i {
+      color: var(--accent-cyan);
+      font-size: 1.2rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: var(--bg-primary);
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+      letter-spacing: 0.3px;
+    }
+
+    /* ===== Experience (Timeline) ===== */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .timeline-item {
+      background: var(--bg-secondary);
+      border-radius: 28px;
+      padding: 2rem 2.2rem;
+      border-left: 6px solid var(--accent-cyan);
+      border: 1px solid var(--border-color);
+      border-left-width: 6px;
+      transition: 0.2s;
+    }
+
+    .timeline-item:hover {
+      background: var(--bg-card-hover);
+    }
+
+    .timeline-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-header h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .timeline-header .company {
+      color: var(--accent-cyan);
+      font-weight: 500;
+    }
+
+    .timeline-header .date {
+      font-size: 0.8rem;
+      background: var(--bg-primary);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      color: var(--text-secondary);
+      border: 1px solid var(--border-color);
+    }
+
+    .timeline-sub {
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin: 0.3rem 0 1rem 0;
+      font-size: 0.95rem;
+    }
+
+    .timeline-duties {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .timeline-duties li {
+      padding-left: 1.6rem;
+      position: relative;
+      margin-bottom: 0.6rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .timeline-duties li::before {
+      content: "▹";
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .timeline-duties li strong {
+      color: white;
+    }
+
+    /* ===== Certifications / Projects ===== */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .cert-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: 28px;
+      padding: 2rem;
+      transition: 0.25s;
+    }
+
+    .cert-card:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--accent-purple);
+    }
+
+    .cert-card .icon {
+      font-size: 2.2rem;
+      color: var(--accent-cyan);
+      margin-bottom: 0.6rem;
+    }
+
+    .cert-card h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .cert-card .meta {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: block;
+      margin: 0.2rem 0 0.8rem 0;
+    }
+
+    .cert-card p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    /* ===== Education & Honors ===== */
+    .edu-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .edu-card {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      border: 1px solid var(--border-color);
+    }
+
+    .edu-card h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .edu-card .detail {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .honor-badge {
+      display: inline-block;
+      background: rgba(159, 122, 234, 0.15);
+      border: 1px solid rgba(159, 122, 234, 0.3);
+      padding: 0.4rem 1.5rem;
+      border-radius: 60px;
+      color: #c4b0f0;
+      font-weight: 500;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      padding: 3rem 0 2rem;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-socials a {
+      color: var(--text-muted);
+      font-size: 1.3rem;
+      transition: 0.2s;
+    }
+
+    .footer-socials a:hover {
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-copy {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 992px) {
+      .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content .subtitle {
+        border-left: none;
+        padding-left: 0;
+      }
+      .hero-stats {
+        justify-content: center;
+      }
+      .btn-group {
+        justify-content: center;
+      }
+      .avatar-box {
+        width: 220px;
+        height: 220px;
+      }
+      .avatar-box i {
+        font-size: 6rem;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .cert-grid {
+        grid-template-columns: 1fr;
+      }
+      .edu-wrapper {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar .container {
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .nav-links {
+        gap: 1rem;
+        font-size: 0.8rem;
+      }
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .section-title {
+        font-size: 1.8rem;
+      }
+      .timeline-header {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .hero-stats {
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#" class="logo">M<span>.</span>Shahrukh</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge"><i class="fas fa-shield-alt" style="margin-right: 6px;"></i> Security Engineer · VAPT Expert</div>
+        <h1>Muhammad <span class="highlight">Shahrukh</span></h1>
+        <div class="subtitle">
+          System-focused Security Engineer · 5+ years orchestrating high-availability cloud infrastructures &amp; neutralizing enterprise-level threats.
+        </div>
+        <div class="btn-group">
+          <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Hire Me</a>
+          <a href="#experience" class="btn btn-outline"><i class="fas fa-briefcase"></i> View Work</a>
+        </div>
+        <div class="hero-stats">
+          <div><span class="num">99.9%</span><div class="label">Uptime (SBP)</div></div>
+          <div><span class="num">5+</span><div class="label">Years Experience</div></div>
+          <div><span class="num">10%</span><div class="label">Throughput Boost</div></div>
+        </div>
+      </div>
+      <div class="hero-avatar">
+        <div class="avatar-box">
+          <div class="ring"></div>
+          <i class="fas fa-user-astronaut"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title">About <span>Me</span></h2>
+      <p class="section-sub">Security Engineer bridging forensic diagnostics with financial &amp; healthcare system integrity.</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>System-focused Security Engineer with <strong>5+ years</strong> of experience orchestrating high-availability cloud infrastructures and neutralizing enterprise-level threats. Proven track record in maintaining <strong>99.9% uptime</strong> for mission-critical assets at the <strong>State Bank of Pakistan (Invest Pak)</strong>.</p>
+          <p style="margin-top: 0.8rem;">Expert in <strong>VAPT (Kali Linux)</strong>, OpenStack orchestration, and ZeroTrust network design. Highly skilled in bridging forensic diagnostics with financial system integrity to maximize operational throughput and data security.</p>
+        </div>
+        <div class="about-info">
+          <div class="info-item"><i class="fas fa-phone"></i><span class="label">Phone</span> <span>+92 318 5595230</span></div>
+          <div class="info-item"><i class="fas fa-envelope"></i><span class="label">Email</span> <span>Shahrukhsanjanri125@gmail.com</span></div>
+          <div class="info-item"><i class="fab fa-linkedin"></i><span class="label">LinkedIn</span> <span>linkedin.com/in/muhammad-shahrukh</span></div>
+          <div class="info-item"><i class="fab fa-github"></i><span class="label">GitHub</span> <span>github.com/shahrukhsanjanri125-afk</span></div>
+          <div class="info-item"><i class="fas fa-map-pin"></i><span class="label">Location</span> <span>Tando Allahyar / Open to Relocate (Karachi, LHR, ISB)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <div class="container">
+      <h2 class="section-title">Technical <span>Competencies</span></h2>
+      <p class="section-sub">Core expertise across cybersecurity, networking, cloud orchestration, and strategic tools.</p>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <h4><i class="fas fa-shield-halved"></i> Cyber Security</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">VAPT</span><span class="skill-tag">Metasploit</span><span class="skill-tag">Wireshark</span>
+            <span class="skill-tag">Forensic Analysis</span><span class="skill-tag">Kali Linux Mastery</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4><i class="fas fa-network-wired"></i> Networking</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">CCNA (R&amp;S)</span><span class="skill-tag">Traffic Engineering</span>
+            <span class="skill-tag">VPN Security</span><span class="skill-tag">Packet Analysis</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4><i class="fas fa-cloud"></i> Cloud &amp; Systems</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">OpenStack Nova/Keystone</span><span class="skill-tag">Linux Hardening</span>
+            <span class="skill-tag">Zero-Trust Architecture</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h4><i class="fas fa-chart-simple"></i> Strategic Tools</h4>
+          <div class="skill-tags">
+            <span class="skill-tag">Advanced Automation (Excel)</span><span class="skill-tag">Power BI</span>
+            <span class="skill-tag">System Validation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EXPERIENCE ===== -->
+  <section id="experience">
+    <div class="container">
+      <h2 class="section-title">Professional <span>Experience</span></h2>
+      <p class="section-sub">Proven track record in financial and public sector systems.</p>
+      <div class="timeline">
+
+        <!-- SAPPHIRE -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3>SAPPHIRE CONSULTING SERVICES</h3>
+            <span class="date">Nov 2025 – Present</span>
+          </div>
+          <div class="timeline-sub">Application Support Representative (State Bank of Pakistan - Invest Pak)</div>
+          <ul class="timeline-duties">
+            <li><strong>Customer Query Acknowledgment:</strong> Directly acknowledge and respond to customer queries, ensuring timely resolution and maintaining high service quality standards for banking application users.</li>
+            <li><strong>Issue Escalation:</strong> Identify and report customer issues to management with proper documentation, ensuring swift escalation and resolution of technical and operational concerns.</li>
+            <li><strong>Real-Time Development Updates:</strong> Monitor development-side issues affecting the website; provide immediate real-time updates to stakeholders during outages, deployments, or system anomalies.</li>
+            <li><strong>System Reliability:</strong> Maintain <strong>99.9% uptime</strong> through proactive monitoring and coordination with engineering teams to ensure uninterrupted financial operations.</li>
+          </ul>
+        </div>
+
+        <!-- DHO -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3>District Health Officer (Health Dept, Govt of Sindh)</h3>
+            <span class="date">Nov 2021 – July 2025</span>
+          </div>
+          <div class="timeline-sub">Data Entry Operator (Systems &amp; Data Integrity Specialist)</div>
+          <ul class="timeline-duties">
+            <li><strong>Workflow Automation:</strong> Developed strategic data-driven models that increased daily operational throughput by <strong>10%</strong> and minimized manual processing errors.</li>
+            <li><strong>Asset Protection:</strong> Administered local network integrity and enforced data validation standards for high-volume healthcare information systems.</li>
+            <li><strong>Operational Continuity:</strong> Successfully balanced full-time high-stakes operational duties with academic advancement in financial management.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTIFICATIONS & PROJECTS ===== -->
+  <section id="certifications">
+    <div class="container">
+      <h2 class="section-title">Certifications &amp; <span>Projects</span></h2>
+      <p class="section-sub">Flagship trainings and applied security engineering projects.</p>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <div class="icon"><i class="fas fa-user-secret"></i></div>
+          <h4>Cybersecurity &amp; Ethical Hacking</h4>
+          <span class="meta">PITP-MUET (2025)</span>
+          <p>Architected a comprehensive cybersecurity framework encompassing automated wireless defense systems, cryptographic vulnerability audits, and enterprise-grade network orchestration to ensure mission-critical infrastructure integrity.</p>
+        </div>
+        <div class="cert-card">
+          <div class="icon"><i class="fas fa-cloud-upload-alt"></i></div>
+          <h4>Cloud Computing</h4>
+          <span class="meta">PITP NED Academy (2026)</span>
+          <p>Engineered a resilient, high-availability multi-cloud ERP ingestion gateway on Kali Linux, utilizing headless OpenStack Swift APIs, Tor-Socks5 anonymous tunneling, and automated Telegram-to-Cloud synchronization to bypass infrastructure limitations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== EDUCATION & HONORS ===== -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title">Education &amp; <span>Honors</span></h2>
+      <p class="section-sub">Academic background and formal recognitions.</p>
+      <div class="edu-wrapper">
+        <div class="edu-card">
+          <h4><i class="fas fa-graduation-cap" style="color: var(--accent-cyan); margin-right: 10px;"></i>Bachelor of Commerce</h4>
+          <div class="detail">University of Sindh Jamshoro (Graduated 2023)</div>
+          <div style="margin-top: 1.2rem;">
+            <h4 style="margin-top: 0.8rem;"><i class="fas fa-laptop" style="color: var(--accent-cyan); margin-right: 10px;"></i>Information Technology (Computer Operator)</h4>
+            <div class="detail">NAVTTC / Govt. Certified (Computer Operator Level-2)</div>
+          </div>
+        </div>
+        <div class="edu-card" style="display: flex; flex-direction: column; justify-content: center;">
+          <div class="honor-badge"><i class="fas fa-trophy" style="margin-right: 10px; color: #fbbf24;"></i> Best Award Recipient (2025)</div>
+          <p style="color: var(--text-secondary); margin-top: 0.8rem;">Formally recognized by <strong style="color:white;">Developers Hub</strong> for exceptional performance in Threat Mitigation and Security Operations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / FOOTER ===== -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content">
+        <div>
+          <h3 style="font-family: 'Space Grotesk', sans-serif; font-weight: 600; font-size: 1.2rem;">Muhammad Shahrukh</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Security Engineer · VAPT &amp; Cloud Specialist</p>
+        </div>
+        <div class="footer-socials">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="#" aria-label="Email"><i class="fas fa-envelope"></i></a>
+          <a href="#" aria-label="Phone"><i class="fas fa-phone"></i></a>
+        </div>
+        <div class="footer-copy">
+          © 2026 · Built with <i class="fas fa-heart" style="color: var(--accent-cyan);"></i>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

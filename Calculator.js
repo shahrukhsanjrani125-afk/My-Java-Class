@@ -10,9 +10,7 @@ rl.question("Enter the first number: ", (firstInput) => {
         
     rl.question("Enter the second number: ", (secondInput) => {
 
-        sk.question("Enter the first number: ", (firstInput) => {
         
-    sk.question("Enter the second number: ", (secondInput) => {
     let firstNumber = Number(firstInput);
         let secondNumber = Number(secondInput);
         let addition = firstNumber + secondNumber;

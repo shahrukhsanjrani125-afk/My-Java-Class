@@ -1,22 +1,19 @@
-============================================================
        JAVASCRIPT FULL STACK DEVELOPMENT COURSE
-============================================================
+
 
 COURSE OVERVIEW
----------------
+
 A comprehensive full-stack JavaScript development course covering 
 front-end and back-end technologies, cloud-native development, 
 DevOps practices, and modern software engineering methodologies.
 
 COURSE OBJECTIVES
------------------
+
 Master the complete JavaScript ecosystem to build scalable, 
 production-ready web applications from scratch. This course provides 
 hands-on experience with industry-standard tools and frameworks.
 
-============================================================
 COURSE MODULES
-============================================================
 
 MODULE 1: Front-End Development with React
 - Build interactive user interfaces using React, JSX, and ES6
@@ -66,9 +63,7 @@ MODULE 8: Career Preparation
 - Interview preparation and techniques
 - Professional presentation skills
 
-============================================================
 TECHNOLOGIES & TOOLS COVERED
-============================================================
 
 Front-End   : React, JSX, ES6, Redux
 Back-End    : Node.js, Express.js
@@ -79,16 +74,13 @@ Cloud       : Cloud-native, Serverless, IBM Code Engine
 API         : REST, cURL, Postman, SwaggerUI
 Testing     : TDD, BDD
 
-============================================================
 PREREQUISITES
-============================================================
 - Basic understanding of software development concepts
 - Familiarity with computer programming fundamentals
 - Knowledge of JSON and AJAX is beneficial
 
-============================================================
 KEY LEARNING OUTCOMES
-============================================================
+
 By the end of this course, you will be able to:
 
 - Build full-stack web applications using JavaScript technologies
@@ -100,18 +92,16 @@ By the end of this course, you will be able to:
 - Apply Agile methodologies in software development
 - Prepare for software engineering career opportunities
 
-============================================================
 GETTING STARTED
-============================================================
+
 1. Set up your development environment
 2. Install Node.js and npm
 3. Set up Git for version control
 4. Create a GitHub account
 5. Explore Docker and containerization tools
 
-============================================================
 PROJECT STRUCTURE
-============================================================
+
 javascript-fullstack-course/
 ├── frontend/
 │   └── react-applications/
@@ -126,9 +116,8 @@ javascript-fullstack-course/
     ├── kubernetes/
     └── ci-cd-pipelines/
 
-============================================================
 ASSESSMENT & PROJECTS
-============================================================
+
 - Hands-on coding exercises
 - React-based front-end projects
 - REST API development
@@ -136,16 +125,13 @@ ASSESSMENT & PROJECTS
 - Container deployment projects
 - Final full-stack capstone project
 
-============================================================
 CONTRIBUTING
-============================================================
+
 - Fork the repository
 - Submit pull requests for improvements
 - Report issues or suggest enhancements
 
-============================================================
 LICENSE
-============================================================
 MIT License
 
 ============================================================

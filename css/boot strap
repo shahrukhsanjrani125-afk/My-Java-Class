@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meri Pehli Bootstrap Website</title>
+  
+  <!-- Yeh link Bootstrap ki CSS ko aapki file se connect kar raha hai -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAVBAR: Upar ka navigation menu -->
+  <nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">Mera Naya Project</span>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION: Main content area -->
+  <div class="container mt-5 text-center">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="display-4">Welcome to My Website!</h1>
+        <p class="lead">Yeh page maine Bootstrap framework use kar ke banaya hai.</p>
+        <!-- EK BUTTON -->
+        <button class="btn btn-primary btn-lg">Click Me</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="text-center mt-5 py-3 bg-light">
+    <p>&copy; 2026 Meri Bootstrap Website.</p>
+  </footer>
+
+  <!-- Yeh link Bootstrap ki JavaScript ko connect kar raha hai (animations/clicks ke liye) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

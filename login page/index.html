@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Instagram — Log In</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===================== LEFT SIDE : REELS SHOWCASE ===================== -->
+  <section class="showcase">
+    <div class="showcase__glow"></div>
+
+    <div class="reels">
+
+      <!-- Reel 1 -->
+      <article class="reel reel--back">
+        <div class="reel__screen">
+          <video class="reel__video" data-reel="0" muted loop playsinline autoplay></video>
+          <div class="reel__overlay"></div>
+          <div class="reel__topbar">
+            <span class="reel__dot"></span>
+            <div class="reel__progress"><span></span></div>
+          </div>
+          <p class="reel__caption">chasing golden hour <br> today ✨</p>
+          <div class="reel__side">
+            <span class="reel__action">❤️<i>24.1k</i></span>
+            <span class="reel__action">💬<i>318</i></span>
+            <span class="reel__action">📤<i>Share</i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Reel 2 -->
+      <article class="reel reel--mid">
+        <div class="reel__screen">
+          <video class="reel__video" data-reel="1" muted loop playsinline autoplay></video>
+          <div class="reel__overlay"></div>
+          <div class="reel__topbar">
+            <span class="reel__dot"></span>
+            <div class="reel__progress"><span></span></div>
+          </div>
+          <p class="reel__caption">3am ramen run <br> hits different 🍥</p>
+          <div class="reel__side">
+            <span class="reel__action">❤️<i>9,842</i></span>
+            <span class="reel__action">💬<i>112</i></span>
+            <span class="reel__action">📤<i>Share</i></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Reel 3 -->
+      <article class="reel reel--front">
+        <div class="reel__screen">
+          <video class="reel__video" data-reel="2" muted loop playsinline autoplay></video>
+          <div class="reel__overlay"></div>
+          <div class="reel__topbar">
+            <span class="reel__dot"></span>
+            <div class="reel__progress"><span></span></div>
+          </div>
+          <p class="reel__caption">learning kickflips <br> attempt #47 🛹</p>
+          <div class="reel__side">
+            <span class="reel__action">❤️<i>52.7k</i></span>
+            <span class="reel__action">💬<i>904</i></span>
+            <span class="reel__action">📤<i>Share</i></span>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="showcase__tagline">See what your friends are up to.</p>
+  </section>
+
+  <!-- ===================== RIGHT SIDE : AUTH FORMS ===================== -->
+  <section class="auth">
+
+    <div class="auth__wrap">
+
+      <!-- ---------- LOGIN CARD ---------- -->
+      <div class="card" id="loginCard">
+        <h1 class="wordmark">Instagram</h1>
+
+        <form id="loginForm" novalidate>
+          <div class="field">
+            <input type="text" id="loginUser" placeholder=" " autocomplete="username" required>
+            <label for="loginUser">Phone number, username, or email</label>
+          </div>
+
+          <div class="field field--password">
+            <input type="password" id="loginPass" placeholder=" " autocomplete="current-password" required>
+            <label for="loginPass">Password</label>
+            <button type="button" class="toggle-pass" id="toggleLoginPass">Show</button>
+          </div>
+
+          <button type="submit" class="btn btn--primary" id="loginSubmit" disabled>Log in</button>
+
+          <div class="divider"><span>OR</span></div>
+
+          <button type="button" class="btn btn--fb">
+            <span class="fb-icon">f</span> Log in with Facebook
+          </button>
+
+          <a href="#" class="forgot-link">Forgot password?</a>
+        </form>
+
+        <p class="form-msg" id="loginMsg" aria-live="polite"></p>
+      </div>
+
+      <!-- ---------- SIGN UP CARD ---------- -->
+      <div class="card card--hidden" id="signupCard">
+        <h1 class="wordmark">Instagram</h1>
+
+        <form id="signupForm" novalidate>
+          <div class="field">
+            <input type="email" id="suEmail" placeholder=" " required>
+            <label for="suEmail">Mobile number or email</label>
+          </div>
+          <div class="field">
+            <input type="text" id="suFullname" placeholder=" " required>
+            <label for="suFullname">Full name</label>
+          </div>
+          <div class="field">
+            <input type="text" id="suUsername" placeholder=" " required>
+            <label for="suUsername">Username</label>
+          </div>
+          <div class="field field--password">
+            <input type="password" id="suPass" placeholder=" " required>
+            <label for="suPass">Password</label>
+            <button type="button" class="toggle-pass" id="toggleSignupPass">Show</button>
+          </div>
+
+          <p class="legal">
+            By signing up, you agree to our Terms and acknowledge our Privacy Policy.
+          </p>
+
+          <button type="submit" class="btn btn--primary" id="signupSubmit" disabled>Sign up</button>
+        </form>
+
+        <p class="form-msg" id="signupMsg" aria-live="polite"></p>
+      </div>
+
+      <!-- ---------- SWITCH PANEL ---------- -->
+      <div class="switch-card">
+        <p id="switchToSignup">Don't have an account? <button type="button" class="link-btn" data-target="signup">Sign up</button></p>
+        <p id="switchToLogin" class="hidden">Have an account? <button type="button" class="link-btn" data-target="login">Log in</button></p>
+      </div>
+
+      <p class="get-app">Get the app.</p>
+    </div>
+  </section>
+
+</div>
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+
+    <div class="footer-links">
+        <a href="#"><i class="fas fa-info-circle"></i> About</a>
+        <a href="#"><i class="fas fa-blog"></i> Blog</a>
+        <a href="#"><i class="fas fa-briefcase"></i> Jobs</a>
+        <a href="#"><i class="fas fa-question-circle"></i> Help</a>
+        <a href="#"><i class="fas fa-shield-alt"></i> Privacy</a>
+        <a href="#"><i class="fas fa-file-contract"></i> Terms</a>
+        <a href="#"><i class="fas fa-map-marker-alt"></i> Locations</a>
+        <a href="#"><i class="fas fa-language"></i> Language</a>
+    </div>
+
+    <div class="footer-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+    </div>
+
+    <p class="footer-copy">
+        © 2026 Instagram Clone. Designed with Sana Tariq
+    </p>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

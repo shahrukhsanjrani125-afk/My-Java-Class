@@ -1,28 +1,39 @@
-let num1 = Number(prompt("Enter first number:"));
-let num2 = Number(prompt("Enter second number:"));
-let operator = prompt("Enter operator (+, -, *, /):");
+const readline = require("readline");
 
-switch (operator) {
-  case "+":
-    alert(num1 + num2);
-    break;
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
 
-  case "-":
-    alert(num1 - num2);
-    break;
+rl.question("Enter first number: ", (n1) => {
+  rl.question("Enter second number: ", (n2) => {
+    rl.question("Enter operator (+, -, *, /): ", (operator) => {
 
-  case "*":
-    alert(num1 * num2);
-    break;
+      let num1 = Number(n1);
+      let num2 = Number(n2);
 
-  case "/":
-    if (num2 !== 0) {
-      alert(num1 / num2);
-    } else {
-      alert("Cannot divide by zero");
-    }
-    break;
+      switch (operator) {
+        case "+":
+          console.log(num1 + num2);
+          break;
+        case "-":
+          console.log(num1 - num2);
+          break;
+        case "*":
+          console.log(num1 * num2);
+          break;
+        case "/":
+          if (num2 !== 0) {
+            console.log(num1 / num2);
+          } else {
+            console.log("Cannot divide by zero");
+          }
+          break;
+        default:
+          console.log("Invalid Operator");
+      }
 
-  default:
-    alert("Invalid Operator");
-}
+      rl.close();
+    });
+  });
+});

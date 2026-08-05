@@ -10,7 +10,6 @@ const correctPin = "1999";
 let balance = 500000000;
 let transactionHistory = [];
 
-
 rl.question("Enter your account number: ", (accountNumber) => {
 
     if (accountNumber === CurrentAccount) {

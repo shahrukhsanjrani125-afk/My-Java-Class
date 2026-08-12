@@ -1,0 +1,26 @@
+body {
+    background-color: white;
+    color: black;
+    transition: 0.3s;
+}
+
+body.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+.container {
+    text-align: center;
+    padding-top: 100px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}

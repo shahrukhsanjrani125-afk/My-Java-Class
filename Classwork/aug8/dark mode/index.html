@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>My Project</h1>
+
+        <p>
+            This is a simple project to demonstrate dark mode functionality.
+        </p>
+
+        <button id="toggle-dark-mode">Toggle Dark Mode</button>
+        <button id="toggle-light-mode">Toggle Light Mode</button>
+        <button id="toggle-theme">Toggle Theme</button>
+    </div>
+
+    <script>
+        const toggleDarkModeButton = document.getElementById('toggle-dark-mode');
+        const toggleLightModeButton = document.getElementById('toggle-light-mode');
+        const toggleThemeButton = document.getElementById('toggle-theme');
+
+        toggleDarkModeButton.addEventListener('click', () => {
+            document.body.classList.add('dark-mode');
+            document.body.classList.remove('light-mode');
+        });
+
+        toggleLightModeButton.addEventListener('click', () => {
+            document.body.classList.add('light-mode');
+            document.body.classList.remove('dark-mode');
+        });
+
+        toggleThemeButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            document.body.classList.toggle('light-mode');
+        });
+    </script>
+</body>
+</html>

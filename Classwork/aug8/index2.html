@@ -1,0 +1,24 @@
+<h1 id="heading">background color Changer </h1>
+
+<button id="red">Red</button>
+<button id="blue">Blue</button>
+<button id="green">Green</button>
+
+<script>
+    let heading = document.querySelector("#heading");
+    
+document.querySelector("#red").addEventListener("click", function() {
+    heading.style.backgroundColor = "red";
+    document.body.style.backgroundColor = "black";
+});
+
+document.querySelector("#blue").addEventListener("click", function() {
+    heading.style.backgroundColor = "blue";
+    document.body.style.backgroundColor = "pink";
+});
+
+document.querySelector("#green").addEventListener("click", function() {
+    heading.style.backgroundColor = "green";
+    document.body.style.backgroundColor = "lightgreen";
+});
+</script>

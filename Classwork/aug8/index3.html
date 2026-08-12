@@ -1,0 +1,21 @@
+<h1 id="counter">0</h1>
+
+<button id="increase">+</button>
+<button id="decrease">-</button>
+
+<script>
+let counter = 0;
+ let heading = document.querySelector("#counter");
+ let increaseButton = document.querySelector("#increase");
+ let decreaseButton = document.querySelector("#decrease"); 
+
+increaseButton.addEventListener("click", function() {
+    counter++;
+    heading.textContent = counter;
+});
+
+decreaseButton.addEventListener("click", function() {
+    counter--;
+    heading.textContent = counter;
+});
+</script>

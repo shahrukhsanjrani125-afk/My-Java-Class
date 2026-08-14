@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHARK VIP - ML Terminal & Tor Bridge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+</head>
+<body>
+    <div class="terminal-container">
+        <header class="terminal-header">
+            <div class="header-left">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="title">SHARK_QUANT_TERMINAL v4.2 [TOR SOCKS5 SECURE]</span>
+            </div>
+            <div class="header-right">
+                <span id="current-date"></span> | <span id="current-time"></span>
+            </div>
+        </header>
+        
+        <div class="terminal-body">
+            <div class="control-panel">
+                <div class="input-group">
+                    <label>ASSET PAIR</label>
+                    <select id="asset-select">
+                        <option value="EUR/USD">EUR/USD (OTC)</option>
+                        <option value="GBP/USD">GBP/USD</option>
+                        <option value="BTC/USD">BTC/USD (Crypto)</option>
+                        <option value="GOLD">XAU/USD (Gold)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>MARKET ENGINE</label>
+                    <select id="market-type-select">
+                        <option value="binary">Binary Options (5M)</option>
+                        <option value="forex">Forex / Crypto</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>SIGNAL BATCH</label>
+                    <input type="number" id="signal-count" value="3" min="1" max="10">
+                </div>
+                <button id="generate-signals" class="btn primary">EXECUTE ML & FETCH TV FEED</button>
+            </div>
+
+            <div class="output-section">
+                <h3>ACTIVE ALGORITHM SIGNALS</h3>
+                <div id="loading-box" class="loading" style="display: none;">[⚡] Analyzing market depth via ML Neural Network...</div>
+                <ul id="signal-list"></ul>
+                <div class="action-buttons">
+                    <button id="copy-signals" class="btn success" style="display: none;">BROADCAST VIA TOR TUNNEL</button>
+                    <button id="reset-signals" class="btn danger">RESET TERMINAL</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

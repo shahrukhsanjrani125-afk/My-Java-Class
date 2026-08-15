@@ -1,0 +1,107 @@
+/* frontend/src/styles/globals.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #00ff88;
+    --primary-dark: #00cc66;
+    --primary-glow: rgba(0, 255, 136, 0.3);
+    --background: #0a0e17;
+    --card-bg: rgba(0, 255, 136, 0.03);
+    --border-color: rgba(0, 255, 136, 0.1);
+    --text-primary: #00ff88;
+    --text-secondary: rgba(0, 255, 136, 0.7);
+    --text-muted: rgba(0, 255, 136, 0.4);
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-display: 'Orbitron', sans-serif;
+}
+
+body {
+    background: var(--background);
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+.app {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 136, 0.3);
+    border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 136, 0.5);
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 20px var(--primary-glow); }
+    50% { box-shadow: 0 0 40px var(--primary-glow); }
+}
+
+@keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.loading-spinner .spinner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid var(--border-color);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-spinner .text {
+    color: var(--text-secondary);
+    font-size: 14px;
+    letter-spacing: 2px;
+}

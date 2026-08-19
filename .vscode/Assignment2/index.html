@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BookStore</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">BookStore</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#books">Books</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="darkBtn">Dark</button>
+                <button id="cartBtn">Cart (<span id="cartCount">0</span>)</button>
+                <button id="menuBtn">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Discover Your Next Great Book</h1>
+            <p>Browse our collection of timeless classics and modern bestsellers.</p>
+            <a href="#books" class="btn">Explore Books</a>
+        </div>
+    </section>
+
+    <section class="search-section">
+        <div class="container">
+            <input type="text" id="searchInput" placeholder="Search by title or author..." />
+            <button id="searchBtn">Search</button>
+            <p id="noBooks" style="display:none; text-align:center; padding:20px;">No books found.</p>
+        </div>
+    </section>
+
+    <section class="books-section" id="books">
+        <div class="container">
+            <h2 class="section-title">Our Collection</h2>
+            <div class="books-grid" id="booksGrid"></div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>BookStore is a haven for readers. Founded in 2025, we bring you a handpicked selection of fiction, self-help, fantasy, and more. Find your next great read with us.</p>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <form id="contactForm">
+                <input type="text" id="cName" placeholder="Your Name" />
+                <input type="email" id="cEmail" placeholder="Your Email" />
+                <textarea id="cMsg" placeholder="Your Message..."></textarea>
+                <button type="submit" class="btn">Send Message</button>
+                <p id="formMsg"></p>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div>
+                <h4>BookStore</h4>
+                <p>Your gateway to stories.</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <a href="#books">Books</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p>shahrukhsanjrani125@gmail.com</p>
+                <p>+92 318 5595230</p>
+            </div>
+            <div class="copy">&copy; 2025 BookStore. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <div id="cartOverlay"></div>
+    <div id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="closeCart">close</button>
+        </div>
+        <div id="cartItems"><p class="empty">Your cart is empty.</p></div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: <span id="cartTotal">Rs. 0</span></div>
+            <div class="cart-actions">
+                <button id="clearCart">Clear Cart</button>
+                <button id="checkout">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

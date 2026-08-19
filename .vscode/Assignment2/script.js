@@ -1,230 +1,219 @@
 const books = [
-    { id: 1, title: "The Alchemist", author: "Paulo Coelho", category: "Fiction", price: 1200, image: "https://picsum.photos/seed/alchemist/200/280" },
-    { id: 2, title: "Atomic Habits", author: "James Clear", category: "Self Help", price: 1500, image: "https://picsum.photos/seed/atomichabits/200/280" },
-    { id: 3, title: "The Hobbit", author: "J.R.R. Tolkien", category: "Fantasy", price: 1100, image: "https://picsum.photos/seed/hobbit/200/280" },
-    { id: 4, title: "Sapiens", author: "Yuval Noah Harari", category: "Non-Fiction", price: 1400, image: "https://picsum.photos/seed/sapiens/200/280" },
-    { id: 5, title: "The Silent Patient", author: "Alex Michaelides", category: "Thriller", price: 1300, image: "https://picsum.photos/seed/silentpatient/200/280" },
-    { id: 6, title: "Dune", author: "Frank Herbert", category: "Sci-Fi", price: 1600, image: "https://picsum.photos/seed/dune/200/280" }
+    {
+        id: 1,
+        title: "The Alchemist",
+        author: "Paulo Coelho",
+        category: "Fiction",
+        price: 1200,
+        image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&q=80&w=400"
+    },
+    {
+        id: 2,
+        title: "Atomic Habits",
+        author: "James Clear",
+        category: "Self Help",
+        price: 1500,
+        image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&q=80&w=400"
+    },
+    {
+        id: 3,
+        title: "Rich Dad Poor Dad",
+        author: "Robert Kiyosaki",
+        category: "Finance",
+        price: 1100,
+        image: "https://images.unsplash.com/photo-1533282960833-f6ff317b9823?auto=format&fit=crop&q=80&w=400"
+    },
+    {
+        id: 4,
+        title: "Clean Code",
+        author: "Robert C. Martin",
+        category: "Technology",
+        price: 2500,
+        image: "https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&q=80&w=400"
+    },
+    {
+        id: 5,
+        title: "Deep Work",
+        author: "Cal Newport",
+        category: "Self Help",
+        price: 1350,
+        image: "https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&q=80&w=400"
+    },
+    {
+        id: 6,
+        title: "The Psychology of Money",
+        author: "Morgan Housel",
+        category: "Finance",
+        price: 1400,
+        image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&q=80&w=400"
+    }
 ];
 
 let cart = [];
 
-const booksGrid = document.getElementById('booksGrid');
-const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
-const noBooks = document.getElementById('noBooks');
-const cartCount = document.getElementById('cartCount');
-const cartItems = document.getElementById('cartItems');
-const cartTotal = document.getElementById('cartTotal');
-const cartSidebar = document.getElementById('cartSidebar');
-const cartOverlay = document.getElementById('cartOverlay');
-const cartBtn = document.getElementById('cartBtn');
-const closeCart = document.getElementById('closeCart');
-const clearCartBtn = document.getElementById('clearCart');
-const checkoutBtn = document.getElementById('checkout');
-const darkBtn = document.getElementById('darkBtn');
-const menuBtn = document.getElementById('menuBtn');
-const navLinks = document.getElementById('navLinks');
-const contactForm = document.getElementById('contactForm');
-const cName = document.getElementById('cName');
-const cEmail = document.getElementById('cEmail');
-const cMsg = document.getElementById('cMsg');
-const formMsg = document.getElementById('formMsg');
+const cartCount = document.getElementById("cart-count");
+const searchInput = document.querySelector("#search-input");
+const searchBtn = document.querySelector("#search-btn");
+const booksContainer = document.getElementById("books-container");
+const cartBtn = document.getElementById("cart-btn");
+const cartSection = document.getElementById("cart-section");
+const closeCart = document.getElementById("close-cart");
+const cartItemsContainer = document.getElementById("cart-items");
+const cartTotal = document.getElementById("cart-total");
+const clearCartBtn = document.getElementById("clear-cart-btn");
+const darkModeBtn = document.getElementById("dark-mode-btn");
+const menuToggle = document.getElementById("menu-toggle");
+const navLinks = document.getElementById("nav-links");
+const contactForm = document.getElementById("contact-form");
+const formMessage = document.getElementById("form-message");
 
-// ----- RENDER BOOKS -----
-function renderBooks(filter) {
-    filter = (filter || '').toLowerCase().trim();
-    let filtered = books;
-    if (filter) {
-        filtered = books.filter(b =>
-            b.title.toLowerCase().includes(filter) ||
-            b.author.toLowerCase().includes(filter)
-        );
-    }
-
-    if (filtered.length === 0) {
-        noBooks.style.display = 'block';
-        booksGrid.innerHTML = '';
+function displayBooks(booksToDisplay) {
+    booksContainer.innerHTML = "";
+    
+    if (booksToDisplay.length === 0) {
+        const noMsg = document.createElement("p");
+        noMsg.textContent = "No books found.";
+        noMsg.style.gridColumn = "1 / -1";
+        noMsg.style.textAlign = "center";
+        booksContainer.appendChild(noMsg);
         return;
     }
-    noBooks.style.display = 'none';
 
-    let html = '';
-    for (let i = 0; i < filtered.length; i++) {
-        const b = filtered[i];
-        html += `
-            <div class="book-card">
-                <img src="${b.image}" alt="${b.title}" />
-                <h3>${b.title}</h3>
-                <p class="author">${b.author}</p>
-                <span class="category">${b.category}</span>
-                <p class="price">Rs. ${b.price}</p>
-                <button class="btn" onclick="addToCart(${b.id})">Add to Cart</button>
+    booksToDisplay.forEach(book => {
+        const card = document.createElement("div");
+        card.classList.add("book-card");
+        card.innerHTML = `
+            <img src="${book.image}" alt="${book.title}" class="book-image">
+            <div class="book-info">
+                <div class="book-category">${book.category}</div>
+                <h3 class="book-title">${book.title}</h3>
+                <p class="book-author">By ${book.author}</p>
+            </div>
+            <div class="book-footer">
+                <span class="book-price">Rs. ${book.price.toLocaleString()}</span>
+                <button class="add-cart" data-id="${book.id}">Add to Cart</button>
             </div>
         `;
-    }
-    booksGrid.innerHTML = html;
-}
-
-function addToCart(id) {
-    const book = books.find(b => b.id === id);
-    if (!book) return;
-
-    let found = false;
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id === id) {
-            cart[i].qty += 1;
-            found = true;
-            break;
-        }
-    }
-    if (!found) {
-        cart.push({ id: book.id, title: book.title, price: book.price, qty: 1 });
-    }
-    updateCart();
-}
-
-function removeFromCart(id) {
-    let newCart = [];
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id !== id) {
-            newCart.push(cart[i]);
-        }
-    }
-    cart = newCart;
-    updateCart();
-}
-
-function clearCart() {
-    cart = [];
-    updateCart();
-}
-
-function getTotal() {
-    let total = 0;
-    for (let i = 0; i < cart.length; i++) {
-        total += cart[i].price * cart[i].qty;
-    }
-    return total;
-}
-
-function updateCart() {
-    let count = 0;
-    for (let i = 0; i < cart.length; i++) {
-        count += cart[i].qty;
-    }
-    cartCount.textContent = count;
-
-    if (cart.length === 0) {
-        cartItems.innerHTML = '<p class="empty">Your cart is empty.</p>';
-    } else {
-        let html = '';
-        for (let i = 0; i < cart.length; i++) {
-            const item = cart[i];
-            html += `
-                <div class="cart-item">
-                    <div class="info">
-                        <div class="title">${item.title}</div>
-                        <div>
-                            <span class="price">Rs. ${item.price}</span>
-                            <span class="qty"> × ${item.qty}</span>
-                        </div>
-                    </div>
-                    <button class="remove" onclick="removeFromCart(${item.id})">Remove</button>
-                </div>
-            `;
-        }
-        cartItems.innerHTML = html;
-    }    
-    cartTotal.textContent = 'Rs. ' + getTotal();
-}
-
-function doSearch() {
-    renderBooks(searchInput.value);
-}
-searchInput.addEventListener('input', doSearch);
-searchBtn.addEventListener('click', doSearch);
-
-// ----- CART SIDEBAR -----
-function openCart() {
-    cartSidebar.classList.add('open');
-    cartOverlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-}
-
-function closeCartFn() {
-    cartSidebar.classList.remove('open');
-    cartOverlay.classList.remove('open');
-    document.body.style.overflow = '';
-}
-
-cartBtn.addEventListener('click', openCart);
-closeCart.addEventListener('click', closeCartFn);
-cartOverlay.addEventListener('click', closeCartFn);
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeCartFn();
-});
-
-clearCartBtn.addEventListener('click', function() {
-    clearCart();
-    cartItems.innerHTML = '<p class="empty">Cart cleared.</p>';
-    cartTotal.textContent = 'Rs. 0';
-});
-
-checkoutBtn.addEventListener('click', function() {
-    if (cart.length === 0) {
-        alert('Your cart is empty!');
-        return;
-    }
-    alert('Order placed! Total: Rs. ' + getTotal() + '\nThank you for shopping!');
-    clearCart();
-    closeCartFn();
-});
-
-darkBtn.addEventListener('click', function() {
-    document.body.classList.toggle('dark');
-    this.textContent = document.body.classList.contains('dark') ? 'Light' : 'Dark';
-});
-
-menuBtn.addEventListener('click', function() {
-    navLinks.classList.toggle('open');
-    this.textContent = navLinks.classList.contains('open') ? '✕' : 'menu';
-});
-
-navLinks.querySelectorAll('a').forEach(function(link) {
-    link.addEventListener('click', function() {
-        navLinks.classList.remove('open');
-        menuBtn.textContent = 'menu';
+        booksContainer.appendChild(card);
     });
+
+    attachCartEventListeners();
+}
+
+displayBooks(books);
+
+searchInput.addEventListener("input", function () {
+    const query = searchInput.value.toLowerCase().trim();
+    const filteredBooks = books.filter(book => 
+        book.title.toLowerCase().includes(query) || 
+        book.author.toLowerCase().includes(query)
+    );
+    displayBooks(filteredBooks);
 });
 
-contactForm.addEventListener('submit', function(e) {
+searchBtn.addEventListener("click", function () {
+    const query = searchInput.value.toLowerCase().trim();
+    const filteredBooks = books.filter(book => 
+        book.title.toLowerCase().includes(query) || 
+        book.author.toLowerCase().includes(query)
+    );
+    displayBooks(filteredBooks);
+});
+
+function attachCartEventListeners() {
+    const addCartButtons = document.querySelectorAll(".add-cart");
+    addCartButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const bookId = parseInt(this.getAttribute("data-id"));
+            const selectedBook = books.find(b => b.id === bookId);
+            
+            const existingItem = cart.find(item => item.id === bookId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ ...selectedBook, quantity: 1 });
+            }
+            
+            updateCartUI();
+        });
+    });
+}
+function updateCartUI() {
+    const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    cartCount.textContent = totalCount;
+
+    cartItemsContainer.innerHTML = "";
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+    } else {
+        cart.forEach(item => {
+            const cartItemEl = document.createElement("div");
+            cartItemEl.classList.add("cart-item");
+            cartItemEl.innerHTML = `
+                <div class="cart-item-details">
+                    <h4>${item.title}</h4>
+                    <p>Rs. ${item.price} x ${item.quantity}</p>
+                </div>
+                <button class="remove-btn" data-id="${item.id}">Remove</button>
+            `;
+            cartItemsContainer.appendChild(cartItemEl);
+        });
+
+        const removeButtons = cartItemsContainer.querySelectorAll(".remove-btn");
+        removeButtons.forEach(btn => {
+            btn.addEventListener("click", function () {
+                const idToRemove = parseInt(this.getAttribute("data-id"));
+                cart = cart.filter(item => item.id !== idToRemove);
+                updateCartUI();
+            });
+        });
+    }
+
+    const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotal.textContent = totalPrice.toLocaleString();
+}
+
+cartBtn.addEventListener("click", () => {
+    cartSection.classList.add("open");
+});
+
+closeCart.addEventListener("click", () => {
+    cartSection.classList.remove("open");
+});
+
+
+clearCartBtn.addEventListener("click", () => {
+    cart = [];
+    updateCartUI();
+});
+
+darkModeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark-mode");
+    if (document.body.classList.contains("dark-mode")) {
+        darkModeBtn.textContent = " Light Mode";
+    } else {
+        darkModeBtn.textContent = " Dark Mode";
+    }
+});
+
+menuToggle.addEventListener("click", () => {
+    navLinks.classList.toggle("active");
+});
+
+contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    const name = cName.value.trim();
-    const email = cEmail.value.trim();
-    const msg = cMsg.value.trim();
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
 
-    if (!name || !email || !msg) {
-        formMsg.textContent = 'Please fill in all fields.';
-        formMsg.className = 'error';
-        return;
+    formMessage.textContent = "";
+    
+    if (name === "" || email === "" || message === "") {
+        formMessage.style.color = "var(--accent-color)";
+        formMessage.textContent = "Please fill in all fields.";
+    } else {
+        formMessage.style.color = "#27ae60";
+        formMessage.textContent = "Message sent successfully!";
+        contactForm.reset();
     }
-    if (!email.includes('@') || !email.includes('.')) {
-        formMsg.textContent = 'Please enter a valid email.';
-        formMsg.className = 'error';
-        return;
-    }
-
-    formMsg.textContent = 'Message sent successfully!';
-    formMsg.className = 'success';
-    contactForm.reset();
-
-    setTimeout(function() {
-        formMsg.textContent = '';
-        formMsg.className = '';
-    }, 4000);
 });
-
-renderBooks('');
-updateCart();

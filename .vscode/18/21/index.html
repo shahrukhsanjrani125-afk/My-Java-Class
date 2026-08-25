@@ -1,0 +1,61 @@
+<div id="studentContainer"></div>
+
+<style>
+    .card {
+        width: 250px;
+        padding: 20px;
+        margin: 10px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+    }
+</style>
+
+<script>
+    let students = [
+        {
+            name: "Ali",
+            age: 20,
+            course: "HTML"
+        },
+        { 
+            name: "Hamza",
+            age: 21,
+            course: "CSS"
+        },
+        {
+            name: "Ahemd",
+            age: 52,
+            course: "JavaScript"
+        }
+    ];
+
+    let container = document.querySelector('#studentContainer');
+
+    students.forEach(function(student) {
+        let card = document.createElement("div");
+        card.classList.add("card");
+
+        let name = document.createElement("h2");
+        name.textContent = student.name;
+
+        let age = document.createElement("p");
+        age.textContent = "Age: " + student.age;
+
+        let course = document.createElement("p");
+        course.textContent = "Course: " + student.course;   
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+
+        deleteButton.addEventListener("click", function() {
+            card.remove();
+        });
+
+        card.appendChild(name);
+        card.appendChild(age);
+        card.appendChild(course);
+        card.appendChild(deleteButton);
+
+        container.appendChild(card);
+    });
+</script>

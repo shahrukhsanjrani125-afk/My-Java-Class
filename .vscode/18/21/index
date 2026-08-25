@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Management</title>
+</head>
+
+<body>
+
+    <h1>Student Management System</h1>
+
+    <form id="studentForm">
+
+        <input
+            type="text"
+            id="name"
+            placeholder="Student Name"
+        >
+
+        <input
+            type="number"
+            id="age"
+            placeholder="Age"
+        >
+
+        <input
+            type="text"
+            id="course"
+            placeholder="Course"
+        >
+
+        <button type="submit">
+            Add Student
+        </button>
+
+    </form>
+
+    <p id="message"></p>
+
+    <div id="studentContainer"></div>
+
+</body>
+<style>
+    .completed{
+        text-decoration: line-through;
+        opacity: 0.5;
+        background-color: aqua;
+    }
+    .card {
+    width: 250px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+</style>
+<script>
+let students = [];
+
+let form = document.querySelector("#studentForm");
+
+let nameInput = document.querySelector("#name");
+let ageInput = document.querySelector("#age");
+let courseInput = document.querySelector("#course");
+
+let message = document.querySelector("#message");
+
+let container = document.querySelector("#studentContainer");
+
+
+function displayStudents() {
+
+    container.textContent = "";
+
+    students.forEach(function(student, index) {
+
+    let card = document.createElement("div");
+
+    card.classList.add("card");
+
+        let name = document.createElement("h2");
+        name.textContent = student.name;
+
+        let age = document.createElement("p");
+        age.textContent = "Age: " + student.age;
+
+        let course = document.createElement("p");
+        course.textContent = "Course: " + student.course;
+
+        let deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", function() {
+
+            students.splice(index, 1);
+
+            displayStudents();
+
+        });
+        let completeButton = document.createElement("button");
+
+        completeButton.textContent = "Course Complete";
+
+        completeButton.addEventListener("click", function() {
+
+    card.classList.toggle("completed");
+
+});
+
+
+        card.appendChild(name);
+        card.appendChild(age);
+        card.appendChild(course);
+        card.appendChild(deleteButton);
+        card.appendChild(completeButton);
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+form.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let name = nameInput.value.trim();
+    let age = ageInput.value;
+    let course = courseInput.value.trim();
+
+
+    if (name === "") {
+
+        message.textContent = "Name is required.";
+
+    } else if (age === "") {
+
+        message.textContent = "Age is required.";
+
+    } else if (course === "") {
+
+        message.textContent = "Course is required.";
+
+    } else {
+
+        let student = {
+            name: name,
+            age: age,
+            course: course
+        };
+
+        students.push(student);
+
+        displayStudents();
+
+        form.reset();
+
+        message.textContent = "Student added successfully!";
+
+    }
+
+});
+</script>
+</html>

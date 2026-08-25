@@ -1,0 +1,14 @@
+<style>
+    .completed{
+        text-decoration: line-through;
+        opacity: 0.5;
+        background-color: aqua;
+    }
+    .card {
+    width: 250px;
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+</style>
